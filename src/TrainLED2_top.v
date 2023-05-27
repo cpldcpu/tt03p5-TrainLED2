@@ -13,11 +13,11 @@ module tt_um_TrainLED2_top(
 TrainLED2 TrainLED2_top1 (
   .clk(clk),
   .rst(~rst_n),
-  .din(uio_in[0]),
-  .dout(uio_out[0]),
-  .led1(uio_out[1]),
-  .led2(uio_out[2]),
-  .led3(uio_out[3])
+  .din(ui_in[0]),
+  .dout(ui_out[0]),
+  .led1(ui_out[1]),
+  .led2(ui_out[2]),
+  .led3(ui_out[3])
   );
 
 // Instance 2 - Requires an additionall tile
