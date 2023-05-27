@@ -20,15 +20,15 @@ TrainLED2 TrainLED2_top1 (
   .led3(uio_out[3])
   );
 
-// Instance 2
-TrainLED2 TrainLED2_top2 (
-  .clk(clk),
-  .rst(~rst_n),
-  .din(uio_in[1]),
-  .dout(uio_out[4]),
-  .led1(uio_out[5]),
-  .led2(uio_out[6]),
-  .led3(uio_out[7])
-  );
+// Instance 2 - Requires an additionall tile
+// TrainLED2 TrainLED2_top2 (
+//   .clk(clk),
+//   .rst(~rst_n),
+//   .din(uio_in[1]),
+//   .dout(uio_out[4]),
+//   .led1(uio_out[5]),
+//   .led2(uio_out[6]),
+//   .led3(uio_out[7])
+//   );
 
 endmodule
