@@ -1,0 +1,5 @@
+read_verilog TrainLED2.v TrainLED2_top.v
+hierarchy -auto-top
+flatten
+synth
+# stat

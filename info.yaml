@@ -2,13 +2,12 @@
 # TinyTapeout project information
 project:
   wokwi_id:    0        # If using wokwi, set this to your project's ID
-
 # If using an HDL, set wokwi_id as 0 and uncomment and list your source files here. 
 # Source files must be in ./src and you must list each source file separately
-#  source_files:        
-#    - counter.v
-#    - decoder.v
-#  top_module:  "seven_segment_seconds"      # put the name of your top module here, make it unique by prepending your github username
+  source_files:        # If using an HDL, set wokwi_id as 0 and uncomment and list your source files here. Source files must be in ./src
+    - TrainLED2_top.v
+    - TrainLED2.v
+  top_module:  "cpldcpu_TrainLED2top"      # put the name of your top module here, make it unique by prepending your github username
 
 # Keep a track of the submission yaml
 yaml_version: 3.0
@@ -18,44 +17,45 @@ yaml_version: 3.0
 #
 # Here is a great example: https://github.com/davidsiaw/tt02-davidsiaw-stackcalc/blob/38c5647f83aad2aec675d566aa3d67b98f0aac81/info.yaml
 documentation: 
-  author:       ""      # Your name
-  title:        ""      # Project title
-  language:     "Wokwi" # other examples include Verilog, Amaranth, VHDL, etc
-  description:  ""      # Short description of what your project does
+  author:       "cpldcpu"      # Your name
+  title:        "TrainLED2 - RGB-LED driver with 8 bit PWM engine"      # Project title
+  language:     "Verilog" # other examples include Verilog, Amaranth, VHDL, etc
+  description:  "A RGB-LED driver using the WS2812 protocol"      # Short description of what your project does
 
 # Longer description of how the project works. You can use standard markdown format.
-  how_it_works: |
-      Explain how your project works
+  how_it_works: "A fully digital implementation of an RGB LED driver that accepts the WS2812 protocol for data input. The design is fully clocked, so the timing parameters of the protocol depend on the clock rate. A pulse between 1 and 5 clock cycles on the input will be interpreted as a zero, longer pulses as a one. Each driver accepts 3x8=24 bit of input data to set the brightness of LED1,LED2 and LED3 (R,G,B). After 24 bit have been received, additional input bits are retimed and forwarded to the data output.
+
+  After the data input was idle for 96 clock cycles, the input data is latched into the PWM engine and the data input is ready for the next data frame.
+
+  The PWM engine uses a special dithering scheme to allow flicker free LED dimming even for relatively low clock rates.  
+  "      # Longer description of how the project works
 
 # Instructions on how someone could test your project, include things like what buttons do what and how to set the clock if needed
-  how_to_test:  |
-      Explain how to test your project
+  how_to_test:  "Execute the shell script 'run.sh' in the src folder. This will invoke the test bench."      # Instructions on how someone could test your project, include things like what buttons do what and how to set the clock if needed
 
-# A description of what the inputs do
-  inputs:               
+  inputs:               # a description of what the inputs do
     - clock
     - reset
+    - Din Driver A
     - none
     - none
     - none
     - none
     - none
-    - none
-# A description of what the outputs do
   outputs:
-    - segment a
-    - segment b
-    - segment c
-    - segment d
-    - segment e
-    - segment f
-    - segment g
-    - dot
+    - Dout Driver A         # a description of what the outputs do
+    - LED1A
+    - LED2A
+    - LED3A
+    - none
+    - none
+    - none
+    - none
 
 # The following fields are optional
   tag:          ""      # comma separated list of tags: test encryption, experiment, clock, animation, utility, industrial, pwm, fpga, alu, microprocessor, risc, riscv, sensor, signal generator, fft, filter, music, bcd, sound, serial, timer, random number generator, calculator, decoder, counter, puzzle, multiplier, game, oscillator,
-  external_hw:  ""      # Describe any external hardware needed
+  external_hw:  "LEDs should be connected to the three LED outputs. The data input should be driven by a microcontroller, generating input data in a slowed down WS2812 scheme."      # Describe any external hardware needed
   discord:      ""      # Your discord handle, used for communication and automatically assigning tapeout role after a submission
-  doc_link:     ""      # URL to longer form documentation, eg the README.md in your repository
+  doc_link:     "https://github.com/cpldcpu/tt03p5-TrainLED2"      # URL to longer form documentation, eg the README.md in your repository
   clock_hz:     0       # Clock frequency in Hz (if required)
-  picture:      ""      # relative path to a picture in your repository
+  picture:      "tb_screenshot.png"      # relative path to a picture in your repository
