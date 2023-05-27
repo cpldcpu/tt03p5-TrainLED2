@@ -7,10 +7,11 @@ project:
   source_files:        # If using an HDL, set wokwi_id as 0 and uncomment and list your source files here. Source files must be in ./src
     - TrainLED2_top.v
     - TrainLED2.v
-  top_module:  "cpldcpu_TrainLED2top"      # put the name of your top module here, make it unique by prepending your github username
+  top_module:  "tt_um_TrainLED2_top"      # put the name of your top module here, make it unique by prepending your github username
+  tiles:  "1x1"
 
 # Keep a track of the submission yaml
-yaml_version: 3.0
+yaml_version: 3.5
 
 # As everyone will have access to all designs, try to make it easy for someone new to your design to know what
 # it does and how to operate it. This info will be automatically collected and used to make a datasheet for the chip.
@@ -34,9 +35,9 @@ documentation:
   how_to_test:  "Execute the shell script 'run.sh' in the src folder. This will invoke the test bench."      # Instructions on how someone could test your project, include things like what buttons do what and how to set the clock if needed
 
   inputs:               # a description of what the inputs do
-    - clock
-    - reset
     - Din Driver A
+    - none
+    - none
     - none
     - none
     - none
@@ -47,6 +48,15 @@ documentation:
     - LED1A
     - LED2A
     - LED3A
+    - none
+    - none
+    - none
+    - none
+  bidirectional:
+    - none
+    - none
+    - none
+    - none
     - none
     - none
     - none
